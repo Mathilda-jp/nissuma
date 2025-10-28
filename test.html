@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タブテスト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-8">
+    <h1 class="text-3xl font-bold mb-6">タブ切り替えテスト</h1>
+    
+    <div class="mb-6">
+        <button onclick="showTestTab('tab1')" id="btn-tab1" class="px-4 py-2 mr-2 bg-blue-600 text-white rounded">タブ1</button>
+        <button onclick="showTestTab('tab2')" id="btn-tab2" class="px-4 py-2 mr-2 bg-gray-300 rounded">タブ2</button>
+        <button onclick="showTestTab('tab3')" id="btn-tab3" class="px-4 py-2 bg-gray-300 rounded">タブ3</button>
+    </div>
+    
+    <div id="content-tab1" class="p-6 bg-white rounded shadow">
+        <h2 class="text-2xl font-bold">タブ1の内容</h2>
+        <p>これはタブ1です</p>
+    </div>
+    
+    <div id="content-tab2" class="p-6 bg-white rounded shadow hidden">
+        <h2 class="text-2xl font-bold">タブ2の内容</h2>
+        <p>これはタブ2です</p>
+    </div>
+    
+    <div id="content-tab3" class="p-6 bg-white rounded shadow hidden">
+        <h2 class="text-2xl font-bold">タブ3の内容</h2>
+        <p>これはタブ3です</p>
+    </div>
+    
+    <script>
+        function showTestTab(tabName) {
+            console.log('タブ切り替え:', tabName);
+            
+            // すべてのコンテンツを非表示
+            document.querySelectorAll('[id^="content-tab"]').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // すべてのボタンをグレーに
+            document.querySelectorAll('[id^="btn-tab"]').forEach(el => {
+                el.className = 'px-4 py-2 mr-2 bg-gray-300 rounded';
+            });
+            
+            // 選択されたタブを表示
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            document.getElementById('btn-' + tabName).className = 'px-4 py-2 mr-2 bg-blue-600 text-white rounded';
+            
+            alert('タブを切り替えました: ' + tabName);
+        }
+    </script>
+</body>
+</html>
